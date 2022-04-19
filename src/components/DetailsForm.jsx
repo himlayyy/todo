@@ -2,7 +2,7 @@ import React from 'react'
 
 function DetailsForm() {
   return (
-    <textarea></textarea>
+    <textarea>Details</textarea>
 
   )
 }
