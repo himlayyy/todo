@@ -5,7 +5,7 @@ import { useState, useEffect, useContext } from "react";
 import { TodoContext } from "./TodoContext";
 import axios from "axios";
 
-function TodoList({todosList, setClickedHandler}) {
+function TodoList({todosList, setClickedHandler, setDeleteTodo, setDoneTodo, doneTodo, setStatus}) {
   // const todosList = useContext(TodoContext.todosList);
 
   // useEffect(() => {
@@ -44,6 +44,9 @@ function TodoList({todosList, setClickedHandler}) {
     <>
       <div className="container">
         Todo List
+        {/* {console.log(lastItem)} */}
+        {/* {console.log(todosList.length)}
+        {console.log(todosList[todosList.length-1])} */}
         <ul className="todo-list">
           {todosList.map((todo) => (
             <TodoItem
@@ -51,7 +54,12 @@ function TodoList({todosList, setClickedHandler}) {
               date={todo.date}
               key={todo._id}
               id={todo._id}
+              status={todo.completed}
               setClickedHandler={setClickedHandler}
+              setDeleteTodo={setDeleteTodo}
+              setDoneTodo={setDoneTodo}
+              doneTodo={doneTodo}
+              setStatus={setStatus}
             />
           ))}
         </ul>

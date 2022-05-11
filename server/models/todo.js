@@ -11,6 +11,10 @@ const TodoSchema = new mongoose.Schema({
     details:{
         type:"String",
     },
+    completed:{
+        type:"Boolean",
+        default:false,
+    }
 });
 
 const Todo = mongoose.model("todo", TodoSchema);

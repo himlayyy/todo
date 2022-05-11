@@ -52,3 +52,29 @@ exports.deleteTodo = (req, res) => {
                 .json({ message: "book not found", error: err.message })
         );
 };
+
+exports.getTodoStatus = (req,res) =>{
+    Todo.findById(req.params.id, req.body)
+        .then((data) =>{
+           let completed = data.completed;
+           console.log(completed);
+            res.json({message: "retrieved todo status",completed})
+        })
+        .catch((err) => {
+            res
+                .status(404)
+                .json({message: "todo detail not found", error: err.message})
+        });
+};
+exports.updateTodoStatus = (req, res) =>{
+    Todo.findById(req.params.id, req.body)
+        .then((data) => res.json({message:"successfully updated todo status", data}))
+        .catch((err) => 
+            res
+                .status(404)
+                .json({message:"todo status not found", error:err.message})
+
+        )
+};
+
+

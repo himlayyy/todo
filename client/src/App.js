@@ -5,30 +5,49 @@ import Details from "./components/Details";
 import { TodoProvider } from "./components/TodoContext";
 import { useContext, useState } from 'react';
 import { TodoContext} from "./components/TodoContext"
+import axios from "axios";
+function getLastItem(){
+  console.log("here");
+  axios
+    .get("http://localhost:8000/api/todo")
+    .then((res) => {
+      const data = res.data;
+      const lastItem = data[data.length -1];
+      console.log(lastItem);    
+    })
+    .catch((err) =>{
+      console.log(err);
+    })
 
+}
 function App() {
   // const []
 
   const [todoHandler, setTodoHandler] = useState([]);
   const [clicked, setClickedHandler] = useState({});
   const [click, setClick] = useState(false);
+  
 
   const getClicked = (clicked, click) =>{
     // console.log(clicked);
     // console.log(typeof(clicked), clicked);
     // console.log(typeof(todoHandler));
+    // getLastItem();
     console.log("in app.js");
-    console.log(clicked.id);
+    console.log(clicked);
+    console.log("setting setClickedHandler");
     setClick(!click);
     setClickedHandler(    
       { 
         id:clicked.id,
         title: clicked.title,
-        date: clicked.date
+        date: clicked.date,
+        del:false,
       }
       );
       // console.log(typeof )
     console.log(clicked);
+
     // console.log(todoHandler);
     };
   return (

@@ -5,14 +5,17 @@ import { TodoContext } from "./TodoContext";
 
 
 
+const defaultState = {
+  title: "Enter the Todo title",
+  date: "",
+  completed:false
+}
+
 // const date = new Date();
 function TodoForm({ addTodo, listState, setListState }){
-  const [input, setInput] = useState({
-    title: "Enter the Todo title",
-    date: ""}
-    // id: "",
-    // isClicked: false
-  );
+  const [input, setInput] = useState(defaultState);
+
+  
   const consumer = useContext(TodoContext);
   // console.log(consumer);
   

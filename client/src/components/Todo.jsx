@@ -5,12 +5,18 @@ import TodoList from "./TodoList";
 import { TodoContext } from "./TodoContext";
 import axios from "axios";
 
-function Todo({ getClicked, setClickedHandler }) {
+function Todo({ getClicked, setClickedHandler}) {
   const [updated, setUpdated] = useState(false);
   // const [initLoad, setInitLoad] = useState(false)
   const [listState, setListState] = useState("init");
-
   const [todosList, setTodosList] = useState([]);
+  const [lastItem, setLastItem] = useState({});
+  const [deleteTodo, setDeleteTodo] = useState("");
+
+  // doneTodo takes the clicked id
+  const [doneTodo, setDoneTodo] = useState("");
+  const [status, setStatus] = useState(false);
+
 
   // const [dbfetch, setFetch] = useState(false);
   // useEffect(() => {
@@ -25,20 +31,55 @@ function Todo({ getClicked, setClickedHandler }) {
       switch(listState){
         case "init":          // 
         case "updated":
+
           axios
           .get("http://localhost:8000/api/todo")
           .then((res) => {
             setTodosList(res.data);
             setListState("notUpdated");
+            // setLastItem(todosList[0]);
+            // console.log(res.data);
+            
           })
           .catch((err) =>{
             console.log(err)
-          });
+          });          
           break;
         default:
-          console.log("pass");         
+          ;         
       }
     },[listState]);
+
+    useEffect(() =>{
+      axios
+        .delete(`http://localhost:8000/api/todo/${deleteTodo}`)
+        .then((res) =>{
+          setListState("updated");
+
+        })
+        .catch((err) =>{
+          console.log(err)
+        });
+    },[deleteTodo]);
+
+    useEffect(() =>{
+      axios
+        .put(`http://localhost:8000/api/todo/${doneTodo}/details`, 
+        {
+          completed:status,
+        })
+        .then((res) =>{
+          setListState("updated");
+          console.log("sent!");
+        })
+        .catch((err) =>{
+          console.log(err);
+        })
+    }, [doneTodo]);
+
+
+
+
     // },[listState]});
     // if(updated || initLoad) { 
       // console.log(initLoad);
@@ -106,12 +147,15 @@ function Todo({ getClicked, setClickedHandler }) {
 
   return (
     <>
+      {/* {console.log(todosList[0])} */}
+      {/* {console.log(`lastItem! ${lastItem}`)} */}
+      {/* {getLastItem()}     */}
       {/* <TodoForm getTodos={todosList} /> */}
       {/* <TodoForm updated={updated} setUpdated={setUpdated} /> */}
       <TodoForm listState={listState} setListState={setListState} />
       {/* <TodoForm addTodo={addTodo} /> */}
       {/* <TodoList todos={todos} clicked={clicked} /> */}
-      <TodoList todosList={todosList} updated={updated} getClicked={getClicked} setClickedHandler={setClickedHandler}/>
+      <TodoList todosList={todosList} updated={updated} getClicked={getClicked} setClickedHandler={setClickedHandler} setDeleteTodo={setDeleteTodo} setDoneTodo={setDoneTodo} doneTodo={doneTodo} setStatus={setStatus}/>
     </>
   );
 }

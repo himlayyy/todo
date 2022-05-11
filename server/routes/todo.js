@@ -7,6 +7,7 @@ const {
     postCreateTodo,
     putUpdateTodo,
     deleteTodo,
+    getTodoStatus,
 
 } = require("../controllers/todo");
 
@@ -45,5 +46,19 @@ router.put("/:id", putUpdateTodo);
  * @access public
  */
 router.delete("/:id", deleteTodo);
+
+/**
+ * @route GET api/todo/:id/details
+ * @description get todo status
+ * @access public
+ */
+router.get("/:id/details", getTodoStatus);
+
+/**
+ * @route PUT api/todo/:id/details 
+ * @description update todo status 
+ * @access public
+ */
+router.put("/:id/details", putUpdateTodo);
 
 module.exports = router;

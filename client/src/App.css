@@ -5,6 +5,7 @@
   --light-cyan: #cbf3f0ff;
   --tiffany-blue: #2ec4b6ff;
   --grey: #f5f3f4;
+  --dark-grey:#b9b5b7;
 }
 body,
 html {
@@ -80,4 +81,10 @@ input[type="date"] {
 }
 .todo-item span{
   display:block;
+}
+.completed{
+  background-color:var(--dark-grey);
+}
+.pending{
+  background-color:green;
 }
