@@ -119,7 +119,7 @@ input[type="date"] {
   /* margin:1em; */
 }
 .modal-header{
-  justify-content: center;
+  justify-content: space-between1q,;
   background-color: red;
   height:fit-content;
 }
@@ -138,4 +138,9 @@ input[type="date"] {
 .board-form > form > input{
   width:100%;
   margin:1em;
+}
+.board-item{
+  border:1px solid black;
+  border-radius:5px;
+  padding:.5em;
 }
