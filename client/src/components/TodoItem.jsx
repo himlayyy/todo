@@ -23,15 +23,12 @@ function TodoItem({ title, date, id, status, setClickedHandler, setDeleteTodo, s
  
   const handleClick = (e) => {
     console.log("in todo item");
-    // parseClicked(e.target.closest(".todo-item"));
     
     let clicked = getClicked(e, ".todo-item");
     let parsed = parseClicked(clicked.innerHTML);
     let id = getId(e);
     console.log(id);
 
-    // let clicked = e.target.closest(".todo-item");
-    // let parsed = parse(clicked.innerHTML);
     setClickedHandler({
       id: clicked.id,
       title: parsed.querySelector(".todo-title").textContent,
@@ -48,38 +45,9 @@ function TodoItem({ title, date, id, status, setClickedHandler, setDeleteTodo, s
     setDoneTodo(getId(e));
     console.log(status);
     setStatus(!status);
-
-    // switch((doneTodo)){
-    //   case true:
-    //     setStatus("completed");
-    //     break;
-    //   case false:
-    //     setStatus("pending");
-    //     break;
-    //   default:
-    // };
-  // setStatus(!status);
-    // console.log(completed);
-    console.log(status);
-
-    // doneTodo === true ?  : setCompleted("pending");
-    // console.log(doneTodo);
-    // console.log(completed);    
+    console.log(status);  
   }
 
-  // const getTodoStatus = () =>{
-  //   axios
-  //       .get(`http://localhost:8000/api/todo/${doneTodo}`, 
-  //       {
-  //         completed:true,
-  //       })
-  //       .then((res) =>{
-  //         setListState("updated");
-  //         console.log("sent!");
-  //       })
-  //       .catch((err) =>{
-  //         conso
-  // }
   return (
     <>
       <div className={`todo-item ${status ? "completed" : "pending" }`}  id={id} onClickCapture={handleClick} >
