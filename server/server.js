@@ -9,6 +9,7 @@ const app = express();
 
 // routes
 const todo = require("./routes/todo"); // added
+const board = require("./routes/board")//added
 
 // connect database
 connectDB();
@@ -22,6 +23,8 @@ app.get("/", (req, res) => res.send("Server up and running"));
 
 // use routes
 app.use("/api/todo", todo); // added
+app.use("/api/board", board); // added
+
 
 // setting up port
 const PORT = process.env.PORT || 8000;
