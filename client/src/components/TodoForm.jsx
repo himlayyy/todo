@@ -60,9 +60,6 @@ function TodoForm({ addTodo, listState, setListState }){
     });   
    
     console.log(input);
-    // console.log(Date.now());
-    // addTodo(input);
-    // console.log(consumer)
     console.log(consumer.todosList.length);
     console.log(consumer);
     consumer.setFetch(state => !state);    
